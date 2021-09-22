@@ -28,9 +28,17 @@ export const schema = new GraphQLSchema({
           countrySortDirection: {
             type: GraphQLString,
           },
+          countryFilterString: {
+            type: GraphQLString,
+          },
         },
-        resolve: (_, { patientsSortDirection, countrySortDirection }) => {
+        resolve: (
+          _,
+          { patientsSortDirection, countrySortDirection, countryFilterString }
+        ) => {
           let baseQuery = queryBuilder("clinical_trial");
+          if (countryFilterString.length)
+            baseQuery.where("country", "like", `${countryFilterString}%`);
           if (patientsSortDirection !== null) {
             baseQuery = baseQuery.orderBy("patients", patientsSortDirection);
           }

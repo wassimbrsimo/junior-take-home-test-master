@@ -91,7 +91,11 @@ const ClinicalTrials: React.FC<Props> = ({
     } else {
       setPatientsSortDirection(null);
     }
-  }, [patientsSortDirection, setPatientsSortDirection]);
+  }, [
+    patientsSortDirection,
+    setPatientsSortDirection,
+    setCountrySortDirection,
+  ]);
 
   const toggleCountrySortDirection = useCallback(() => {
     if (countrySortDirection == null) {
@@ -103,9 +107,9 @@ const ClinicalTrials: React.FC<Props> = ({
     } else {
       setCountrySortDirection(null);
     }
-  }, [countrySortDirection, setCountrySortDirection]);
+  }, [countrySortDirection, setCountrySortDirection, setPatientsSortDirection]);
 
-  const [inputText, setInputText] = useState<String>("");
+  const [inputText, setInputText] = useState<any>(countryFilterString);
 
   return (
     <Fragment>
@@ -113,17 +117,17 @@ const ClinicalTrials: React.FC<Props> = ({
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("submit ");
+          setCountryFilterString(inputText);
         }}
       >
         <label>
           Filter Country:
           <input
             type="text"
-            value={countryFilterString}
-            onSubmit={(e) => console.log("submit ", e)}
-            onChange={(e) => setCountryFilterString(e.target.value)}
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
           />
+          <button type="submit">Filter</button>
         </label>
       </form>
       <Table>
