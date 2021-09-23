@@ -13,7 +13,28 @@ const Table = styled.div`
   border-spacing: 0px 8px;
   display: table;
 `;
-
+const Button = styled.button`
+  border-radius: 10px;
+  background-color: #94e498;
+  border-width: 0px;
+  margin: 10px;
+  padding: 15px;
+`;
+const Input = styled.input`
+  padding: 16px 16px 16px 60px;
+  font-weight: 300;
+  font-size: 15px;
+  border-radius: 10px;
+  border-width: 0px;
+  margin: 20px;
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: red;
+  }
+  :-ms-input-placeholder {
+    color: red;
+  }
+`;
 const Header = styled.div`
   display: table-header-group;
 `;
@@ -121,13 +142,13 @@ const ClinicalTrials: React.FC<Props> = ({
         }}
       >
         <label>
-          Filter Country:
-          <input
+          Country:
+          <Input
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
-          <button type="submit">Filter</button>
+          <Button type="submit">Filter</Button>
         </label>
       </form>
       <Table>

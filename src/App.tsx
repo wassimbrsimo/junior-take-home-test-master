@@ -8,7 +8,7 @@ import environment from "./environment";
 import { AppQuery } from "./__generated__/AppQuery.graphql";
 
 const Layout = styled.div`
-  background: #f6f7fa;
+  background: #dde2e7;
   display: flex;
   height: 100%;
   justify-content: center;
